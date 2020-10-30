@@ -24,8 +24,8 @@ function RenderDish(props) {
 function Dishdetail(props) {
   const [dishes, setDishes] = useState(DISHES);
   const {dishId} = props.route.params;
-
-  return <RenderDish dish={dishes[+dishId]} />;
+    console.warn(dishId)
+  return <RenderDish dish={dishes[dishId]} />;
 }
 
 export default Dishdetail;
