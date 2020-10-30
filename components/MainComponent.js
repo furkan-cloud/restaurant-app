@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Menu from './MenuComponent';
 import Home from './HomeComponent';
+import About from './AboutComponent';
+import Contact from './ContactComponent';
 import Dishdetail from './DishDetailComponent';
 import {View, Platform} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -42,6 +44,40 @@ function HomePage() {
   );
 }
 
+function AboutPage() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: '#512DA8'},
+        headerTintColor: '#fff',
+        headerTitleStyle: {color: '#fff'},
+      }}>
+      <Stack.Screen
+        options={{title: 'About Us'}}
+        name="About"
+        component={About}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ContactPage() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: '#512DA8'},
+        headerTintColor: '#fff',
+        headerTitleStyle: {color: '#fff'},
+      }}>
+      <Stack.Screen
+        options={{title: 'Contact Us'}}
+        name="Contact"
+        component={Contact}
+      />
+    </Stack.Navigator>
+  );
+}
+
 const Main = () => {
   return (
     <NavigationContainer style={{flex: 1, paddingTop: 10}}>
@@ -51,7 +87,9 @@ const Main = () => {
           // width: 240,
         }}>
         <Drawer.Screen name="Home" component={HomePage} />
+        <Drawer.Screen name="About Us" component={AboutPage} />
         <Drawer.Screen name="Menu" component={MenuPage} />
+        <Drawer.Screen name="Contact Us" component={ContactPage} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
