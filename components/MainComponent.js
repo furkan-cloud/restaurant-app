@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Menu from './MenuComponent';
 import Home from './HomeComponent';
-import About from './AboutComponent';
+import History from './AboutComponent';
 import Contact from './ContactComponent';
 import Dishdetail from './DishDetailComponent';
-import {View, Platform} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -16,7 +15,6 @@ function MenuPage() {
   return (
     <Stack.Navigator
       screenOptions={{
-        // initialRouteName: 'Menu',
         headerStyle: {backgroundColor: '#512DA8'},
         headerTintColor: '#fff',
         headerTitleStyle: {color: '#fff'},
@@ -55,7 +53,7 @@ function AboutPage() {
       <Stack.Screen
         options={{title: 'About Us'}}
         name="About"
-        component={About}
+        component={History}
       />
     </Stack.Navigator>
   );
@@ -84,7 +82,6 @@ const Main = () => {
       <Drawer.Navigator
         drawerStyle={{
           backgroundColor: '#D1C4E9',
-          // width: 240,
         }}>
         <Drawer.Screen name="Home" component={HomePage} />
         <Drawer.Screen name="About Us" component={AboutPage} />
@@ -94,35 +91,5 @@ const Main = () => {
     </NavigationContainer>
   );
 };
-
-// const MenuNavigator = createStackNavigator(
-//   {
-//     Menu: {screen: Menu },
-//     Dishdetail: {screen: Dishdetail},
-//   },
-//   {
-//     initialRouteName: 'Menu',
-//     navigationOptions: {
-//       headerStyle: {
-//         backgroundColor: '#512DA8',
-//       },
-//       headerTintColor: '#fff',
-//       headerTitleStyle: {
-//         color: '#fff',
-//       },
-//     },
-//   },
-// );
-
-// class Main extends Component {
-
-//   render() {
-//     return (
-//       <View style={{flex:1, paddingTop: 10 }}>
-//         <MenuNavigator />
-//       </View>
-//     );
-//   }
-// }
 
 export default Main;
