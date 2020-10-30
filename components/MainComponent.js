@@ -2,36 +2,66 @@ import React, {Component} from 'react';
 import Menu from './MenuComponent';
 import {DISHES} from '../shared/dishes';
 import Dishdetail from './DishDetailComponent';
-import { View } from 'react-native';
+import {View, Platform} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dishes: DISHES,
-      selectedDish: null,
-    };
-  }
-  onDishSelect(dishId) {
-    this.setState({selectedDish: dishId});
-  }
+const Stack = createStackNavigator();
 
-  render() {
-    return (
-      <View>
-        <Menu
-          dishes={this.state.dishes}
-          onPress={(dishId) => this.onDishSelect(dishId)}
+function Main() {
+  return(
+    <NavigationContainer style={{flex:1,paddingTop: 10 }}>
+      <Stack.Navigator
+      screenOptions={{
+        initialRouteName: "Menu",
+        headerStyle: {backgroundColor: "#512DA8"},
+        headerTintColor:'#fff',
+        headerTitleStyle: {color: "#fff"}
+      }}>
+        <Stack.Screen 
+        options = {{title: "Menu"}}
+        name= "Menu"
+        component={Menu}
         />
-        <Dishdetail
-          dish={
-            this.state.dishes.filter(
-              (dish) => dish.id === this.state.selectedDish)[0]
-          }
+                <Stack.Screen 
+        options = {{title: "Dish Details"}}
+        name= "Dishdetail"
+        component={Dishdetail}
         />
-      </View>
-    );
-  }
+
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
+
+// const MenuNavigator = createStackNavigator(
+//   {
+//     Menu: {screen: Menu },
+//     Dishdetail: {screen: Dishdetail},
+//   },
+//   {
+//     initialRouteName: 'Menu',
+//     navigationOptions: {
+//       headerStyle: {
+//         backgroundColor: '#512DA8',
+//       },
+//       headerTintColor: '#fff',
+//       headerTitleStyle: {
+//         color: '#fff',
+//       },
+//     },
+//   },
+// );
+
+// class Main extends Component {
+
+//   render() {
+//     return (
+//       <View style={{flex:1, paddingTop: 10 }}>
+//         <MenuNavigator />
+//       </View>
+//     );
+//   }
+// }
 
 export default Main;
