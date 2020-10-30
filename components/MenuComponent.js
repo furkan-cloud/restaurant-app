@@ -22,7 +22,7 @@ function Menu(props) {
   const renderMenuItem = ({item, index}) => {
     return (
       <ListItem key={index} onPress={() => props.navigation.navigate("Dishdetail", {dishId: item.id} ) }>
-        <Avatar rounded source={require('./images/uthappizza.png')} />
+        <Avatar rounded source={{uri:"https://cdn10.phillymag.com/wp-content/uploads/sites/3/2020/05/alpen-rose-burger.jpg"}} />
         <ListItem.Content>
           <ListItem.Title>{item.name}</ListItem.Title>
           <ListItem.Subtitle>{item.description}</ListItem.Subtitle>

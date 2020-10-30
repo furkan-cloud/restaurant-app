@@ -1,38 +1,61 @@
 import React, {Component} from 'react';
 import Menu from './MenuComponent';
-import {DISHES} from '../shared/dishes';
+import Home from './HomeComponent';
 import Dishdetail from './DishDetailComponent';
 import {View, Platform} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-function Main() {
-  return(
-    <NavigationContainer style={{flex:1,paddingTop: 10 }}>
-      <Stack.Navigator
+function MenuPage() {
+  return (
+    <Stack.Navigator
       screenOptions={{
-        initialRouteName: "Menu",
-        headerStyle: {backgroundColor: "#512DA8"},
-        headerTintColor:'#fff',
-        headerTitleStyle: {color: "#fff"}
+        // initialRouteName: 'Menu',
+        headerStyle: {backgroundColor: '#512DA8'},
+        headerTintColor: '#fff',
+        headerTitleStyle: {color: '#fff'},
       }}>
-        <Stack.Screen 
-        options = {{title: "Menu"}}
-        name= "Menu"
-        component={Menu}
-        />
-                <Stack.Screen 
-        options = {{title: "Dish Details"}}
-        name= "Dishdetail"
+      <Stack.Screen options={{title: 'Menu'}} name="Menu" component={Menu} />
+      <Stack.Screen
+        options={{title: 'Dish Details'}}
+        name="Dishdetail"
         component={Dishdetail}
-        />
-
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
+      />
+    </Stack.Navigator>
+  );
 }
+
+function HomePage() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: '#512DA8'},
+        headerTintColor: '#fff',
+        headerTitleStyle: {color: '#fff'},
+      }}>
+      <Stack.Screen options={{title: 'Home'}} name="Home" component={Home} />
+    </Stack.Navigator>
+  );
+}
+
+const Main = () => {
+  return (
+    <NavigationContainer style={{flex: 1, paddingTop: 10}}>
+      <Drawer.Navigator
+        drawerStyle={{
+          backgroundColor: '#D1C4E9',
+          // width: 240,
+        }}>
+        <Drawer.Screen name="Home" component={HomePage} />
+        <Drawer.Screen name="Menu" component={MenuPage} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+};
 
 // const MenuNavigator = createStackNavigator(
 //   {
