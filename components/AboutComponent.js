@@ -7,6 +7,7 @@ const History = () => {
   const [leaders, setLeaders] = useState(LEADERS);
 
   const renderLeaders = ({item, index}) => {
+
     return (
       <ListItem
         key={index}
